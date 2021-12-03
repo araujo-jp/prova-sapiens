@@ -1,5 +1,6 @@
 import { Flex, Box, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody, Td, HStack } from '@chakra-ui/react'
 import { RiAddLine, RiDeleteBack2Line, RiPencilLine } from 'react-icons/ri';
+import Link from 'next/link';
 
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar';
@@ -20,9 +21,18 @@ export default function Dashboard() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal" color="orange">Carros</Heading>
 
-            <Button as="a" size="sm" fontSize="sm" colorScheme="orange" leftIcon={<Icon as={RiAddLine} fontSize="20" />}>
-              Criar novo
-            </Button>
+            <Link href="/cars/create" passHref>
+              <Button
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="orange"
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+                Criar novo Carro
+              </Button>
+            </Link>
+
           </Flex>
 
           <Table colorScheme="whiteAlpha">
