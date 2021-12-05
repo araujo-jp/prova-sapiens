@@ -1,6 +1,6 @@
 import { Flex, Stack, Button } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import { useForm, SubmitHandler} from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useRouter } from 'next/router';
@@ -21,7 +21,7 @@ const signInFormSchema = yup.object({
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const { register, handleSubmit, formState } = useForm<SignInFormData>({
+    const { register, handleSubmit, formState } = useForm<SignInFormData>({
     resolver: yupResolver(signInFormSchema)
   })
 
@@ -34,49 +34,50 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Flex width="100vw" height="100vh" align="center" justify="center" direction="column">
+    <>
+      <Flex width="100vw" height="100vh" align="center" justify="center" direction="column">
 
-      <Stack width="100%" maxWidth={600} align="center" spacing="2">
+        <Stack width="100%" maxWidth={600} align="center" spacing="2">
 
-        <Logo width="auto" fontSize="6xl" />
+          <Logo width="auto" fontSize="6xl" />
 
-        <Flex as="form" width="100%" maxWidth={400} bg="gray.800" padding="8" borderRadius={8} flexDir="column" onSubmit={handleSubmit(handleSignIn)}>
+          <Flex as="form" width="100%" maxWidth={400} bg="gray.800" padding="8" borderRadius={8} flexDir="column" onSubmit={handleSubmit(handleSignIn)}>
 
-          <Stack spacing="5">
+            <Stack spacing="5">
 
-            <Input
-              className="email"
-              label="E-mail"
-              type="email"
-              error={formState.errors.email}
-              {...register('email')}
-            />
-            <Input
-              className="password"
-              label="Senha"
-              type="password"
-              error={formState.errors.password}
-              {...register('password')}
-            />
+              <Input
+                className="email"
+                label="E-mail"
+                type="email"
+                error={formState.errors.email}
+                {...register('email')}
+              />
+              <Input
+                className="password"
+                label="Senha"
+                type="password"
+                error={formState.errors.password}
+                {...register('password')}
+              />
 
-          </Stack>
+            </Stack>
 
-          <Button
-            type="submit"
-            mt="6"
-            colorScheme="orange"
-            size="lg"
-            isLoading={formState.isSubmitting}
-          >
-            Entrar
-          </Button>
+            <Button
+              type="submit"
+              mt="6"
+              colorScheme="orange"
+              size="lg"
+              isLoading={formState.isSubmitting}
+            >
+              Entrar
+            </Button>
 
-        </Flex>
+          </Flex>
 
-      </Stack>
+        </Stack>
 
-    </Flex>
-
+      </Flex>
+    </>
   )
 }
 
