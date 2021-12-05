@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Input } from '../../components/form';
 import { Header } from '../../components/Header';
 import { Sidebar } from '../../components/Sidebar';
+import { createCar } from '../../services/hooks/createCar';
 
 type CreateCarFormData = {
   model_name: string,
@@ -38,10 +39,11 @@ export default function CreateCar() {
   });
 
   const handleCreateCar: SubmitHandler<CreateCarFormData> = async (values) => {
-    console.log(values)
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    if (formState.errors) {
+    const response = await createCar({ ...values })
+    if (response) {
       router.push('/dashboard');
+    } else {
+      alert('Falha na criação do carro')
     }
   }
 
