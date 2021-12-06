@@ -22,7 +22,6 @@ export async function getCars(): Promise<Car[]> {
 
 export function useCars() {
   return useQuery('cars', getCars, {
-    staleTime: 1000 * 60 * 5,  // 3 seconds
+    staleTime: 1000 * 60 * 5,  // 5 min
   })
 }
-

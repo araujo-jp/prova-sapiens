@@ -1,4 +1,3 @@
-import { useQuery } from 'react-query'
 import { api } from '../api'
 
 export async function deleteCarbyId(id: string): Promise<number> {
