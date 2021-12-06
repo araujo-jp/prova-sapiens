@@ -1,16 +1,26 @@
-import { Flex, Box, Heading, Button, Icon, Table, Thead, Tr, Th, Checkbox, Tbody, Td, HStack, Spinner, Text, Link } from '@chakra-ui/react'
+import { Flex, Box, Heading, Button, Icon, Table, Thead, Tr, Th, Tbody, Td, HStack, Spinner, Text, Link } from '@chakra-ui/react'
 import { RiAddLine, RiDeleteBack2Line, RiLoaderLine, RiPencilLine } from 'react-icons/ri';
 import type { NextPage } from 'next'
 
 import { Header } from '../components/Header'
-import { Sidebar } from '../components/Sidebar';
-import { Pagination } from '../components/Pagination'
 import { useCars } from '../services/hooks/useCars';
-import { queryClient } from '../services/queryClient';
 import { deleteCarbyId } from '../services/hooks/useDeleteCar';
+import { useRouter } from 'next/router';
+
+interface Car {
+  id: string;
+  model_name: string;
+  description: string;
+  license_plate: string;
+  brand: string;
+  year_manufactory: string;
+  year_model: string;
+  sale_price: string;
+}
 
 
 const Dashboard: NextPage = () => {
+  const router = useRouter()
   const { data, isLoading, error, isFetching, refetch } = useCars()
 
   async function handleDeleteCar(id: string) {
@@ -24,6 +34,10 @@ const Dashboard: NextPage = () => {
     }
   }
 
+  function handleUpdateCar(car: Car) {
+    router.push(`cars/update/${car.id}`);
+  } 
+
   return (
     <>
       <Flex direction="column" height="100vh">
@@ -31,8 +45,6 @@ const Dashboard: NextPage = () => {
         <Header />
 
         <Flex width="100%" maxWidth={1480} marginY="6" marginX="auto" paddingX="6">
-
-          {/* <Sidebar /> */}
 
           <Box flex="1" borderRadius={8} bg="gray.800" p="8">
 
@@ -111,18 +123,15 @@ const Dashboard: NextPage = () => {
                                   Apagar
                                 </Button>
 
-                                <Button as="a" size="sm" fontSize="sm" colorScheme="blue" leftIcon={<Icon as={RiPencilLine} />}>
-                                  Editar
-                                </Button>
+                                  <Button as="a" onClick={() => handleUpdateCar(car)} size="sm" fontSize="sm" colorScheme="blue" leftIcon={<Icon as={RiPencilLine} />}>
+                                    Editar
+                                  </Button>
                               </HStack>
                             </Td>
                           </Tr>
                         )
                       })}
                     </Tbody>
-
-                    {/* <Pagination /> */}
-
                   </Table>
                 </>
               )
