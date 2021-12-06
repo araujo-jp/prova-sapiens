@@ -73,7 +73,7 @@ export default function CreateCar() {
         <Sidebar />
 
         <Box as="form" flex="1" borderRadius={8} bg="gray.800" p="8" onSubmit={handleSubmit(handleCreateCar)}>
-          <Heading size="lg" fontWeight="normal">Atualizar dados o carro</Heading>
+          <Heading size="lg" fontWeight="normal">Atualizar dados</Heading>
 
           <Divider borderColor="gray.700" my="6" />
 
